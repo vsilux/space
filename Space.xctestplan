@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "FFE23AB5-B394-428E-9B64-F1CB3CCC51CF",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Space.xcodeproj",
+      "identifier" : "9D5ACA122DFAE7E0003D6E4F",
+      "name" : "Space"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:Space.xcodeproj",
+        "identifier" : "9D5ACA202DFAE7E1003D6E4F",
+        "name" : "SpaceTests"
+      }
+    }
+  ],
+  "version" : 1
+}
