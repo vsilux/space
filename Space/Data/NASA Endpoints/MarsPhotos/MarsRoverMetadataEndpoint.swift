@@ -31,7 +31,7 @@ enum MarsRoverMetadataEndpoint: Enpoint {
     }
 }
 
-struct RoverManifestResult: Codable {
+struct MarsRoverManifestResult: Codable {
     let photoManifest: PhotoManifest
 
     enum CodingKeys: String, CodingKey {
@@ -39,7 +39,10 @@ struct RoverManifestResult: Codable {
     }
     
     struct PhotoManifest: Codable {
-        let name, landingDate, launchDate, status: String
+        let name: String
+        let landingDate: Date
+        let launchDate: Date
+        let status: String
         let maxSol: Int
         let maxDate: Date
         let totalPhotos: Int
@@ -72,8 +75,8 @@ struct RoverManifestResult: Codable {
     }
 }
 
-enum RoverManifestResultMapper {
-    static func map(_ response: (data: Data, response: URLResponse)) throws -> RoverManifestResult {
+enum MarsRoverManifestResultMapper {
+    static func map(_ response: (data: Data, response: URLResponse)) throws -> MarsRoverManifestResult {
         let data = response.data
         guard let response = response.response as? HTTPURLResponse else {
             throw RequestError(
@@ -91,11 +94,10 @@ enum RoverManifestResultMapper {
         }
         
         do {
-            let object = try decoder.decode(RoverManifestResult.self, from: data)
+            let object = try decoder.decode(MarsRoverManifestResult.self, from: data)
             return object
         }
         catch {
-            print("Decoding error: \(error)")
             throw error
         }
     }

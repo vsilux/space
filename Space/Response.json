@@ -1,1 +1,21 @@
-{"id":102693,"sol":1000,"camera":{"id":20,"name":"FHAZ","rover_id":5,"full_name":"Front Hazard Avoidance Camera"},"img_src":"http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG","earth_date":"2015-05-30","rover":{"id":5,"name":"Curiosity","landing_date":"2012-08-06","launch_date":"2011-11-26","status":"active"}}
+{
+    "photo_manifest":
+    {
+        "name":"Spirit",
+        "landing_date":"2004-01-04",
+        "launch_date":"2003-06-10",
+        "status":"complete",
+        "max_sol":2208,
+        "max_date":"2010-03-21",
+        "total_photos":124550,
+        "photos":
+        [
+            {
+                "sol":1,
+                "earth_date":"2004-01-05",
+                "total_photos":77,
+                "cameras":["ENTRY","FHAZ","NAVCAM","PANCAM","RHAZ"]
+            }
+        ]
+    }
+}

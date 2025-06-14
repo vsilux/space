@@ -124,7 +124,6 @@ enum APODResultMapper {
             return object
         }
         catch {
-            print("Decoding error: \(error)")
             throw error
         }
         

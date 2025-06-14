@@ -1,32 +1,34 @@
 //
-//  MarsRoverPhotosEndpointTests.swift
+//  MarsRoverMetadataEndpointTests.swift
 //  SpaceTests
 //
 //  Created by Illia Suvorov on 14.06.2025.
 //
 
+import Foundation
 import XCTest
 import Combine
+
 @testable import Space
 
-final class MarsRoverPhotosEndpointTests: XCTestCase {
+final class MarsRoverMetadataEndpointTests: XCTestCase {
     var cancelables = Set<AnyCancellable>()
     
-    func testMarsRoverPhotosEndpoint() throws {
+    func testMarsRoverMetadataEndpoint() throws {
         let urlSession = MockUrlProtocol.urlSession
         MockUrlProtocol.requestHandler = { request in
             return NasaEndpointTestHelper.responseTuple(
-                data: NasaApiTestData.photoResponse.data(using: .utf8)!,
-                subpath: MarsRoverPhotosEndpoint.subpath
+                data: NasaApiTestData.metadataResponse.data(using: .utf8)!,
+                subpath: MarsRoverMetadataEndpoint.subpath
             )
         }
         
-        let request = try MarsRoverPhotosEndpoint.photos(rover: .curiosity, sol: 1, camera: .fhaz, page: 1)
+        let request = try MarsRoverMetadataEndpoint.metadata(rover: .spirit)
             .request(baseUrl: NasaEndpointTestHelper.baseURL, apiKey: "")
         let expectations = NasaEndpointTestHelper.responseExpectations(self, success: true)
         
         urlSession.dataTaskPublisher(for: request)
-            .tryMap(MarsRoverPhotoResultMapper.map)
+            .tryMap(MarsRoverManifestResultMapper.map)
             .sink(receiveCompletion: {
                 if case let .failure(error) = $0 {
                     print("Error: \(error)")
@@ -49,13 +51,13 @@ final class MarsRoverPhotosEndpointTests: XCTestCase {
             )
         }
         
-        let request = try MarsRoverPhotosEndpoint.photos(rover: .curiosity, sol: 1, camera: .fhaz, page: 1)
+        let request = try MarsRoverMetadataEndpoint.metadata(rover: .spirit)
             .request(baseUrl: NasaEndpointTestHelper.baseURL, apiKey: "")
         
         let expectations = NasaEndpointTestHelper.responseExpectations(self, success: false)
         
         urlSession.dataTaskPublisher(for: request)
-            .tryMap(MarsRoverPhotoResultMapper.map)
+            .tryMap(MarsRoverManifestResultMapper.map)
             .sink(receiveCompletion: {
                 if case let .failure(error) = $0 {
                     print("Error: \(error)")

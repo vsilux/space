@@ -12,6 +12,7 @@ enum MarsRover: String {
     case opportunity = "opportunity"
     case spirit = "spirit"
     enum Camera: String, Codable, CaseIterable {
+        case entry = "ENTRY"
         case fhaz = "FHAZ" // Front Hazard Avoidance Camera
         case rhaz = "RHAZ" // Rear Hazard Avoidance Camera
         case navcam = "NAVCAM" // Navigation Camera
